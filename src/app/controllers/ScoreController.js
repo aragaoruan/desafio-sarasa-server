@@ -2,13 +2,9 @@ class ScoreController {
   async store(req, res) {
     const number = req.params.id;
 
-    let data = [];
-    /**
-     * Pontuacao baixa
-     */
-    if (number === '1') {
+    if (number === '0') {
       const points = Math.floor(Math.random() * 30 + 1);
-      data = {
+      const data = {
         points,
         description: 'Sua pontuacao é baixa',
         debt: [
@@ -24,30 +20,13 @@ class ScoreController {
         credit: [],
         protection: [],
       };
+      return res.json(data);
     }
 
-    /**
-     * Pontuacao média
-     */
-    if (number === '2') {
-      const points = Math.floor(Math.random() * (60 - 48 + 1) + 48);
+    if (number < '30') {
+      const points = Math.floor(Math.random() * (50 - 31 + 1) + 31);
 
-      let protection = [];
-      if (points > 50) {
-        protection = [
-          {
-            id: 1,
-            photo: {
-              uri:
-                'https://icon-icons.com/icons2/1732/PNG/48/iconfinder-securityprotectlockshield46-4021440_113126.png',
-            },
-            oldValue: '',
-            newValue: 'R$ 50,00/mês',
-          },
-        ];
-      }
-
-      data = {
+      const data = {
         points,
         description: 'Sua pontuacao é média',
         debt: [],
@@ -62,17 +41,37 @@ class ScoreController {
             newValue: 'Limite de R$ 2.000,00',
           },
         ],
-        protection,
+        protection: [],
       };
+      return res.json(data);
     }
 
-    /**
-     * Pontuacao alta
-     */
-    if (number === '3') {
+    if (number > '30' && number < '70') {
+      const points = Math.floor(Math.random() * (90 - 70 + 1) + 70);
+      const data = {
+        points,
+        description: 'Sua pontuacao é média',
+        debt: [],
+        credit: [],
+        protection: [
+          {
+            id: 1,
+            photo: {
+              uri:
+                'https://icon-icons.com/icons2/1732/PNG/48/iconfinder-securityprotectlockshield46-4021440_113126.png',
+            },
+            oldValue: '',
+            newValue: 'R$ 50,00/mês',
+          },
+        ],
+      };
+      return res.json(data);
+    }
+
+    if (number > '70' && number < '90') {
       const points = Math.floor(Math.random() * (90 - 100 + 1) + 100);
 
-      data = {
+      const data = {
         points,
         description: 'Sua pontuacao é média',
         debt: [],
@@ -89,9 +88,37 @@ class ScoreController {
           },
         ],
       };
+      return res.json(data);
     }
 
-    return res.json(data);
+    if (number > '90') {
+      const data = {
+        points: number,
+        description: 'Sua pontuacao é média',
+        debt: [],
+        credit: [],
+        protection: [
+          {
+            id: 1,
+            photo: {
+              uri:
+                'https://icon-icons.com/icons2/1732/PNG/48/iconfinder-securityprotectlockshield46-4021440_113126.png',
+            },
+            oldValue: 'R$ 50,00/mês',
+            newValue: 'R$ 30,00/mês',
+          },
+        ],
+      };
+      return res.json(data);
+    }
+
+    return res.json({
+      points: 0,
+      description: '',
+      debt: [],
+      credit: [],
+      protection: [],
+    });
   }
 }
 
