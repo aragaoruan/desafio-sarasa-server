@@ -10,7 +10,7 @@ class ScoreController {
       const points = Math.floor(Math.random() * 30 + 1);
       data = {
         points,
-        description: 'Sua pontuacao é alta',
+        description: 'Sua pontuacao é baixa',
         debt: [
           {
             id: 1,
