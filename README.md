@@ -3,15 +3,15 @@ API
 ### Instalando
 Siga os passos para iniciar a aplicação no seu ambiente:
 
-###Clonando projeto
+### Clonando projeto
 ```
 https://github.com/aragaoruan/desafio-sarasa-consumidor-api
 ```
-###Instale as dependências
+#### Instale as dependências
 ```
 yarn
 ```
-###Iniciando servidor
+#### Iniciando servidor
 ```
 yarn dev
 ```
